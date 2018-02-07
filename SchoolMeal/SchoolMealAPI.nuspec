@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>SchoolMealParser</id>
+    <version>$version$</version>
+    <title>NEIS SchoolMeal API</title>
+    <authors>Sepi</authors>
+    <licenseUrl>https://github.com/pid011/SchoolMealAPI/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/pid011/SchoolMealAPI</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>NEIS 웹페이지에서 급식표를 파싱해서 API형태로 제공합니다.</description>
+    <releaseNotes>Downgrade .NET Framework</releaseNotes>
+    <copyright>Copyright Sepi 2016</copyright>
+    <tags>SchoolMeal NEIS</tags>
+    <dependencies>
+      <dependency id="HtmlAgilityPack" version="1.4.9.5" />
+    </dependencies>
+  </metadata>
+
+  <files>
+    <file src="bin\Release\SchoolMeal.*" target="lib\net46" />
+  </files>
+</package>
