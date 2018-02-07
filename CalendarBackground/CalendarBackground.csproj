@@ -105,7 +105,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
@@ -198,7 +198,6 @@
     <Resource Include="Fonts\NanumSquareRoundEB.ttf" />
     <Resource Include="Fonts\NanumSquareRoundL.ttf" />
     <Resource Include="Fonts\NanumSquareRoundR.ttf" />
-    <None Include="CalendarBackground_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
