@@ -5,9 +5,9 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalendarBackground", "CalendarBackground\CalendarBackground.csproj", "{E877E061-6017-4D35-BA8C-BB026A0D0C36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolMeal", "..\..\..\SchoolMealAPI-master\SchoolMeal\SchoolMeal\SchoolMeal.csproj", "{1BAB2241-30A6-427B-8936-46A8DD90A575}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolMeal", "SchoolMeal\SchoolMeal.csproj", "{1BAB2241-30A6-427B-8936-46A8DD90A575}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalLowLevelHooks", "..\..\..\Global-Low-Level-Key-Board-And-Mouse-Hook-master\GlobalLowLevelHooks\GlobalLowLevelHooks.csproj", "{77EB5498-54DD-4DCA-AFF6-F9B2C6F97FE3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalLowLevelHooks", "GlobalLowLevelHooks\GlobalLowLevelHooks.csproj", "{77EB5498-54DD-4DCA-AFF6-F9B2C6F97FE3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingImageHelper", "BingImageHelper\BingImageHelper.csproj", "{DE6B03F4-4A30-4C6F-B96D-F56B9BBAABCC}"
 EndProject
