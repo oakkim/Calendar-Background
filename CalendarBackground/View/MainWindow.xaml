@@ -1,0 +1,116 @@
+﻿<Window x:Class="CalendarBackground.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CalendarBackground"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Closed="Window_Closed"
+        StateChanged="Window_StateChanged_1"
+        Title="MainWindow"
+        Background="Transparent"
+        ResizeMode="NoResize"
+        WindowState="Maximized"
+        WindowStyle="None"
+        FontFamily="{StaticResource NanumSquareRoundRegular}"
+        AllowsTransparency="True">
+    <Grid x:Name="grMain">
+        <!--Background image grid-->
+        <Grid x:Name="gridScreen">
+            <Rectangle Fill="Black"></Rectangle>
+            <Image x:Name="imgPictureScreen" Source="{Binding Items[0].Background}" Stretch="{Binding CurrentStretchType}"></Image>
+            <Grid Background="Gray" Opacity="0.2"></Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.25*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.25*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock x:Name="tbAmPm" Margin="0,60,10,0" FontSize="40" Foreground="White" FontWeight="Normal" ></TextBlock>
+                    <TextBlock x:Name="tbTime" Width="650" FontSize="150" Foreground="White" HorizontalAlignment="Left"></TextBlock>
+                </StackPanel>
+                <!--<controls:Carousel 
+                    Margin="0,20,0,0"
+                    x:Name="CarouselSearchRank"
+                    Height="50"
+                    Width="400"
+                    Grid.Column="2"
+                    HorizontalAlignment="Left"
+                    ItemDepth="1"
+                    ItemMargin="10"
+                    Orientation="Vertical"
+                    IsHitTestVisible="False"
+                    SelectedIndex="0">
+                    <controls:Carousel.EasingFunction>
+                        <CubicEase EasingMode="EaseOut" />
+                    </controls:Carousel.EasingFunction>
+                    <controls:Carousel.ItemTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalAlignment="Left" Width="400" Margin="0,0,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Foreground="White" Grid.Column="0" FontSize="30" FontWeight="SemiBold" TextAlignment="Right">
+                                <Run Text="{Binding num}" Foreground="LawnGreen"></Run><Run Text=""></Run>
+                                </TextBlock>
+                                <TextBlock Margin="10,0,0,0" Foreground="White" Grid.Column="1" FontSize="30" FontWeight="SemiBold" Text="{Binding content}"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </controls:Carousel.ItemTemplate>
+                </controls:Carousel>-->
+            </Grid>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+
+            </StackPanel>
+        </Grid>
+        
+        <Grid Margin="100">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                <ColumnDefinition Width="0.3*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel VerticalAlignment="Bottom" Grid.Column="0">
+                <Label x:Name="lblYear" FontSize="30" Foreground="{x:Static local:Common.DefaultForeground}">2017</Label>
+                <Label x:Name="lblMonth" FontSize="50" Foreground="{x:Static local:Common.DefaultForeground}">DECEMBER</Label>
+                <ListView x:Name="lvCalendar" Background="Transparent" BorderThickness="0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding Day}" Foreground="{Binding Foreground}" FontSize="20"></Label>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel IsItemsHost="True" Orientation="Horizontal"></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Padding" Value="0,0,0,0"/>
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="White"/>
+                                </Trigger>
+                            </Style.Triggers>
+                            <Style.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                </Style>
+                            </Style.Resources>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </StackPanel>
+            <StackPanel Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                <Label x:Name="lblMeal" FontSize="15" Foreground="{x:Static local:Common.DefaultForeground}" FontFamily="Segoue UI" FontWeight="UltraLight" ></Label>
+            </StackPanel>
+        </Grid>
+        
+    </Grid>
+</Window>
