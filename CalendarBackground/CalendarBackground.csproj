@@ -208,17 +208,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Global-Low-Level-Key-Board-And-Mouse-Hook-master\GlobalLowLevelHooks\GlobalLowLevelHooks.csproj">
+    <ProjectReference Include="..\GlobalLowLevelHooks\GlobalLowLevelHooks.csproj">
       <Project>{77EB5498-54DD-4DCA-AFF6-F9B2C6F97FE3}</Project>
       <Name>GlobalLowLevelHooks</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\SchoolMealAPI-master\SchoolMeal\SchoolMeal\SchoolMeal.csproj">
-      <Project>{1bab2241-30a6-427b-8936-46a8dd90a575}</Project>
-      <Name>SchoolMeal</Name>
     </ProjectReference>
     <ProjectReference Include="..\BingImageHelper\BingImageHelper.csproj">
       <Project>{de6b03f4-4a30-4c6f-b96d-f56b9bbaabcc}</Project>
       <Name>BingImageHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SchoolMeal\SchoolMeal.csproj">
+      <Project>{1bab2241-30a6-427b-8936-46a8dd90a575}</Project>
+      <Name>SchoolMeal</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

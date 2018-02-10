@@ -1,32 +1,29 @@
-﻿using CefSharp;
-using CefSharp.Wpf;
-using GlobalLowLevelHooks;
-using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
-using System.Windows.Media;
 using System.Windows.Threading;
+using CefSharp;
+using CefSharp.Wpf;
+using GlobalLowLevelHooks;
+using Microsoft.Win32;
 
-namespace CalendarBackground
+namespace CalendarBackground.View
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        IntPtr workerw = IntPtr.Zero;
-        IntPtr desktopWorkerw = IntPtr.Zero;
+        IntPtr _workerw = IntPtr.Zero;
+        IntPtr _desktopWorkerw = IntPtr.Zero;
 #if false
 #region GlobalMouseHook
         MouseHook mouseHook = new MouseHook();
         #endregion
 #endif
-        private IntPtr currentHwnd = IntPtr.Zero;
+        private IntPtr _currentHwnd = IntPtr.Zero;
 
         public MainWindow()
         {
@@ -50,10 +47,7 @@ namespace CalendarBackground
 
         private void SystemEvents_DisplaySettingsChanged(object sender, EventArgs e)
         {
-            Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(delegate
-            {
-                FillDisplay();
-            }));
+            Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(FillDisplay));
         }
 #if false
 #region GlobalMouseHook
@@ -69,12 +63,12 @@ namespace CalendarBackground
 #endif
         private void MouseHook_LeftButtonUp(MouseHook.MSLLHOOKSTRUCT mouseStruct)
         {
-            Point pt = new Point(mouseStruct.pt.x, mouseStruct.pt.y);
+            var pt = new Point(mouseStruct.pt.x, mouseStruct.pt.y);
             //Debug.WriteLine(pt);  
 
-            IntPtr win = W32.GetForegroundWindow();
+            var win = W32.GetForegroundWindow();
             Debug.WriteLine("point: " + pt + ", hWnd: " + win.ToInt32());
-            if(win == desktopWorkerw)
+            if(win == _desktopWorkerw)
             {
                 Debug.WriteLine("바탕화면클릭함. 이걸로 클릭하겟음 - " + GetWindowHandle().ToInt32());
 
@@ -89,12 +83,12 @@ namespace CalendarBackground
             //ClickOnPoint(GetWindowHandle());
         }
 
-        public void InitWorkerW()
+        private void InitWorkerW()
         {
             // Fetch the Progman window
-            IntPtr progman = W32.FindWindow("Progman", null);
+            var progman = W32.FindWindow("Progman", null);
 
-            IntPtr result = IntPtr.Zero;
+            var result = IntPtr.Zero;
 
             // Send 0x052C to Progman. This message directs Progman to spawn a 
             // WorkerW behind the desktop icons. If it is already there, nothing 
@@ -113,7 +107,7 @@ namespace CalendarBackground
             // If we found that window, we take its next sibling and assign it to workerw.
             W32.EnumWindows(new W32.EnumWindowsProc((tophandle, topparamhandle) =>
             {
-                IntPtr p = W32.FindWindowEx(tophandle,
+                var p = W32.FindWindowEx(tophandle,
                                             IntPtr.Zero,
                                             "SHELLDLL_DefView",
                                             IntPtr.Zero);
@@ -121,10 +115,10 @@ namespace CalendarBackground
                 if (p != IntPtr.Zero)
                 {
                     // Gets the SHELLDLL_DefView's WorkerW;
-                    desktopWorkerw = W32.GetParent(p);
+                    _desktopWorkerw = W32.GetParent(p);
 
                     // Gets the WorkerW Window after the current one.
-                    workerw = W32.FindWindowEx(IntPtr.Zero,
+                    _workerw = W32.FindWindowEx(IntPtr.Zero,
                                                tophandle,
                                                "WorkerW",
                                                IntPtr.Zero);
@@ -155,13 +149,11 @@ namespace CalendarBackground
 
         private IntPtr GetWindowHandle()
         {
-            if(currentHwnd == IntPtr.Zero)
-            {
-                Window window = Window.GetWindow(this);
-                currentHwnd = new WindowInteropHelper(window).EnsureHandle();
-            }
+            if (_currentHwnd != IntPtr.Zero) return _currentHwnd;
+            var window = Window.GetWindow(this);
+            _currentHwnd = new WindowInteropHelper(window).EnsureHandle();
 
-            return currentHwnd;
+            return _currentHwnd;
         }
 
         //Temporary
@@ -171,7 +163,7 @@ namespace CalendarBackground
             System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.FromPoint(point);
             var area = screen.WorkingArea;
 
-            W32.SetWindowPos(workerw, W32.HWND.Bottom, area.X, area.Y, area.Width, area.Height, 0);
+            W32.SetWindowPos(_workerw, W32.HWND.Bottom, area.X, area.Y, area.Width, area.Height, 0);
             this.Top = area.Top;
             this.Left = area.Left;
             this.Width = area.Width;
@@ -180,10 +172,10 @@ namespace CalendarBackground
 
         private void FillYoutube(string url)
         {
-            CefSettings s = new CefSettings();
+            var s = new CefSettings();
             s.SetOffScreenRenderingBestPerformanceArgs();
             Cef.Initialize(s);
-            ChromiumWebBrowser wbMain = new ChromiumWebBrowser(); 
+            var wbMain = new ChromiumWebBrowser(); 
             //wbMain.Address = "https://www.youtube.com/embed/videoseries?list=PLjkUDT6hWqyrotJAOd5JAdF_63LFku36i;autoplay=1";
             wbMain.Address = "https://www.youtube.com/embed/DnDFThL1qlI?autoplay=1;loop=1";
             grMain.Children.Add(wbMain);
@@ -194,7 +186,7 @@ namespace CalendarBackground
             var hwnd = GetWindowHandle();
             Debug.WriteLine("curhwnd: " + hwnd.ToInt32());
 
-            W32.SetParent(hwnd, workerw);
+            W32.SetParent(hwnd, _workerw);
         }
 
         private async void Window_StateChanged_1(object sender, EventArgs e)
@@ -202,7 +194,7 @@ namespace CalendarBackground
             await MaximizeWindow(this);
         }
 
-        public Task MaximizeWindow(Window window)
+        private Task MaximizeWindow(Window window)
         {
             return Task.Factory.StartNew(() =>
             {

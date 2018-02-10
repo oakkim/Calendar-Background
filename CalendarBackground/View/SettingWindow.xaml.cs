@@ -1,23 +1,15 @@
-﻿using BingHelper;
-using CalendarBackground.Model;
-using MahApps.Metro.Controls;
-using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using BingHelper;
+using CalendarBackground.Model;
+using MahApps.Metro.Controls;
+using Microsoft.Win32;
 
-namespace CalendarBackground
+namespace CalendarBackground.View
 {
     /// <summary>
     /// Interaction logic for SettingWindow.xaml
