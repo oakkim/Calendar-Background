@@ -33,7 +33,7 @@ namespace CalendarBackground.View
             System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.PrimaryScreen;
             var ratio = screen.WorkingArea.Width / 300;
             var height = screen.WorkingArea.Height / ratio;
-            imgPreview.Height = height;
+            rectPreview.Height = height;
         }
 
         private void btnPictureSelect_Click(object sender, RoutedEventArgs e)
@@ -61,7 +61,7 @@ namespace CalendarBackground.View
             var bingUnit = await bingImage.GetTodayBingUnit(BingImageResolution.LARGE);
             if (bingUnit != null)
             {
-                imgPreview.Source = new BitmapImage(new Uri(bingUnit.Path));
+                imgPreview.ImageSource = new BitmapImage(new Uri(bingUnit.Path));
             }
         }
 

@@ -169,11 +169,13 @@
 
                     <!--배경화면 프리뷰-->
                     <Grid Grid.Row="0" Width="300" HorizontalAlignment="Left">
-                        <Image x:Name="imgPreview"
-                           Source="{Binding Items[0].Background, TargetNullValue='/Assets/bigBlue.png'}" 
-                           Width="300"
-                           HorizontalAlignment="Center"
-                           Stretch="{Binding CurrentStretchType}"></Image>
+                        <Rectangle x:Name="rectPreview" Width="300" HorizontalAlignment="Center">
+                            <Rectangle.Fill>
+                                <ImageBrush x:Name="imgPreview"
+                                            ImageSource="{Binding Items[0].Background, TargetNullValue='/Assets/bigBlue.png'}" 
+                                            Stretch="{Binding CurrentStretchType}"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
 
                         <Grid Width="300"
                               HorizontalAlignment="Center"

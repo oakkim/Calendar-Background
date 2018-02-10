@@ -19,7 +19,13 @@
         <!--Background image grid-->
         <Grid x:Name="gridScreen">
             <Rectangle Fill="Black"></Rectangle>
-            <Image x:Name="imgPictureScreen" Source="{Binding Items[0].Background}" Stretch="{Binding CurrentStretchType}"></Image>
+            <Rectangle>
+                <Rectangle.Fill>
+                    <ImageBrush x:Name="imgPictureScreen"
+                                ImageSource="{Binding Items[0].Background}" 
+                                Stretch="{Binding CurrentStretchType}"></ImageBrush>
+                </Rectangle.Fill>
+            </Rectangle>
             <Grid Background="Gray" Opacity="0.2"></Grid>
             <Grid>
                 <Grid.ColumnDefinitions>
