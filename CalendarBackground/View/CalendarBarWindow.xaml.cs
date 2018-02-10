@@ -19,7 +19,7 @@ namespace CalendarBackground.View
             await MaximizeWindow(this);
         }
 
-        public Task MaximizeWindow(Window window)
+        private Task MaximizeWindow(Window window)
         {
             return Task.Factory.StartNew(() =>
             {
