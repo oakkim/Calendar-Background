@@ -18,7 +18,7 @@ namespace CalendarBackground.View.Pages.Setting
         public SettingBackgroundPage()
         {
             InitializeComponent();
-            this.DataContext = App.backgroundViewModel;
+            this.DataContext = App.BackgroundViewModel;
         }
 
         private void SetPreviewImageSize()
@@ -32,7 +32,7 @@ namespace CalendarBackground.View.Pages.Setting
         private void btnPictureSelect_Click(object sender, RoutedEventArgs e)
         {
             var filePath = OpenDialog()[0];
-            App.backgroundViewModel.AddBackground(new CBPictureBackground(filePath));
+            App.BackgroundViewModel.AddBackground(new CBPictureBackground(filePath));
         }
 
         private string[] OpenDialog(bool multiSelect = false)
@@ -67,9 +67,9 @@ namespace CalendarBackground.View.Pages.Setting
                 if (grid != null && grid.DataContext != null)
                 {
                     BackgroundType type = (BackgroundType)grid.DataContext;
-                    if (App.backgroundViewModel.CurrentType != type)
+                    if (App.BackgroundViewModel.CurrentType != type)
                     {
-                        await App.backgroundViewModel.ChangeBackgroundByDefaultValueAsync(type);
+                        await App.BackgroundViewModel.ChangeBackgroundByDefaultValueAsync(type);
                     }
                     Debug.WriteLine(type);
                 }

@@ -37,7 +37,7 @@ namespace CalendarBackground.View
 #endif
             InitOnDisplaySettingChanged();
 
-            grMain.DataContext = App.backgroundViewModel;
+            grMain.DataContext = App.BackgroundViewModel;
         }
 
         private void InitOnDisplaySettingChanged()

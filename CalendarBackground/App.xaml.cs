@@ -15,7 +15,8 @@ namespace CalendarBackground
     /// </summary>
     public partial class App : Application
     {
-        public static CBBackgroundViewModel backgroundViewModel = new CBBackgroundViewModel();
+        public static readonly CBBackgroundViewModel BackgroundViewModel = new CBBackgroundViewModel();
+        public static readonly CBSettingMenuViewModel SettingMenuViewModel = new CBSettingMenuViewModel();
 
         protected override void OnStartup(StartupEventArgs e)
         {

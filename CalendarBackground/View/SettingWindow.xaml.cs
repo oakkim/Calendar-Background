@@ -20,7 +20,7 @@ namespace CalendarBackground.View
         public SettingWindow()
         {
             InitializeComponent();
-            DataContext = new CBSettingMenuViewModel();
+            DataContext = App.SettingMenuViewModel;
         }
     }
 }
