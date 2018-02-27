@@ -150,7 +150,10 @@
     <Compile Include="Converter\StretchEnumToIndex.cs" />
     <Compile Include="Model\CBBackground.cs" />
     <Compile Include="Model\CBDay.cs" />
+    <Compile Include="Model\CBSettingMenu.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\CBBackgroundViewModel.cs" />
+    <Compile Include="ViewModel\CBSettingMenuViewModel.cs" />
     <Compile Include="View\Pages\Setting\SettingBackgroundPage.xaml.cs">
       <DependentUpon>SettingBackgroundPage.xaml</DependentUpon>
     </Compile>
