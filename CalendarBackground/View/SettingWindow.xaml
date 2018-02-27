@@ -35,24 +35,28 @@
 
         <!--왼쪽메뉴-->
         <Grid Grid.Column="0" Margin="30,10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             
-            <Viewbox Grid.Column="0" VerticalAlignment="Center">
-                <ContentControl Content="{StaticResource icon_setting}"></ContentControl>
-            </Viewbox>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Viewbox Grid.Column="0" VerticalAlignment="Center">
+                    <ContentControl Content="{StaticResource icon_setting}"></ContentControl>
+                </Viewbox>
+
+                <TextBlock Grid.Column="1" 
+                           Text="Setting" FontSize="20"
+                           VerticalAlignment="Center"
+                           Margin="8,0,0,5"/>
+            </Grid>
             
-            <TextBlock Grid.Column="1" 
-                       Text="Setting" FontSize="20"
-                       VerticalAlignment="Center"
-                       Margin="8,0,0,5"></TextBlock>
+            <!--Todo: Add Menu-->
         </Grid>
 
         <!--중간-->
