@@ -6,7 +6,6 @@
         xmlns:ctrls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:converters="clr-namespace:CalendarBackground.Converter"
         xmlns:local="clr-namespace:CalendarBackground"
-        xmlns:model="clr-namespace:CalendarBackground.Model"
         WindowTitleBrush="{DynamicResource WindowTitleColorBrush}"
         NonActiveWindowTitleBrush="{DynamicResource WindowTitleColorBrush}"
         NonActiveBorderBrush="{DynamicResource WindowTitleColorBrush}"
@@ -14,112 +13,9 @@
         NonActiveGlowBrush="Black"
         WindowTransitionsEnabled="False"
         mc:Ignorable="d"
-        Loaded="MetroWindow_Loaded"
         Title="" Height="720" Width="1280">
     <Window.Resources>
-        <converters:BackgroundTypeToIndex x:Key="BackgroundTypeToIndex"/>
-        <converters:StretchEnumToIndex x:Key="StretchEnumToIndex"/>
 
-        <Style TargetType="Label">
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontFamily" Value="Segoe UI"/>
-            <Setter Property="FontWeight" Value="Light"/>
-        </Style>
-        
-        <Style TargetType="TextBlock">
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontFamily" Value="Segoe UI"/>
-            <Setter Property="FontWeight" Value="Light"/>
-        </Style>
-
-        <Style x:Key="StyleTextBlockOptionCaption" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="15"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontFamily" Value="Segoe UI"/>
-            <Setter Property="FontWeight" Value="Light"/>
-            <Setter Property="Margin" Value="0,0,0,5"/>
-            <Setter Property="VerticalAlignment" Value="Bottom"/>
-        </Style>
-
-        <Grid x:Key="GridBingImageSelect" DataContext="{x:Static model:BackgroundType.BING_IMAGE}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="30"/>
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Style="{StaticResource StyleTextBlockOptionCaption}" Text="Set image count"/>
-            
-        </Grid>
-
-        <Grid x:Key="GridPictureSelect" DataContext="{x:Static model:BackgroundType.PICTURE}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="30"/>
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Style="{StaticResource StyleTextBlockOptionCaption}" Text="Choose your picture"/>
-
-            <!--<ListView Grid.Row="1" Margin="0,5,0,10" BorderThickness="0" Background="Transparent">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Width="100" Height="100">
-                            <Image Source="{Binding}" Stretch="Fill"></Image>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Vertical"></WrapPanel>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-            </ListView>-->
-            
-            <Button x:Name="btnPictureSelect" Grid.Row="2" Style="{StaticResource AccentedSquareButtonStyle}" 
-                    Width="80" HorizontalAlignment="Left"
-                    Click="btnPictureSelect_Click"
-                    FocusVisualStyle="{x:Null}" Content="Browse"/>
-        </Grid>
-
-        <Grid x:Key="GridSolidColorSelect" DataContext="{x:Static model:BackgroundType.SOLID_COLOR}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Style="{StaticResource StyleTextBlockOptionCaption}" Text="Choose your background color"/>
-
-            <ListView Grid.Row="1" Margin="0,5,0,10" BorderThickness="0" Background="Transparent" Width="350">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Width="40" Height="40" Margin="5">
-                            <Rectangle Fill="{Binding}"></Rectangle>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Vertical"></WrapPanel>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-            </ListView>
-        </Grid>
-
-        <Grid x:Key="GridSlideshowSelect" DataContext="{x:Static model:BackgroundType.SLIDE_SHOW}">
-            <TextBlock>4</TextBlock>
-
-        </Grid>
-
-        <Grid x:Key="GridYoutubeSelect" DataContext="{x:Static model:BackgroundType.YOUTUBE}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Style="{StaticResource StyleTextBlockOptionCaption}" 
-                       Foreground="Yellow"
-                       Text="This will use more CPU and memory"></TextBlock>
-        </Grid>
     </Window.Resources>
     <Grid Background="Black">
         <Grid.ColumnDefinitions>
@@ -150,121 +46,7 @@
         </Grid>
 
         <!--중간-->
-        <Grid Grid.Column="1" Margin="30,10,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <!--타이틀-->
-            <TextBlock Grid.Row="0" Text="Background" FontSize="25" Margin="0,0,0,10"/>
-
-            <ScrollViewer Grid.Row="1">
-                <Grid Margin="0,0,0,30">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="100"/>
-                        <RowDefinition Height="100"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-
-                    <!--배경화면 프리뷰-->
-                    <Grid Grid.Row="0" Width="300" HorizontalAlignment="Left">
-                        <Rectangle x:Name="rectPreview" Width="300" HorizontalAlignment="Center">
-                            <Rectangle.Fill>
-                                <ImageBrush x:Name="imgPreview"
-                                            ImageSource="{Binding Items[0].Background, TargetNullValue='/Assets/bigBlue.png'}" 
-                                            Stretch="{Binding CurrentStretchType}"/>
-                            </Rectangle.Fill>
-                        </Rectangle>
-
-                        <Grid Width="300"
-                              HorizontalAlignment="Center"
-                              Background="Gray" Opacity="0.2"></Grid>
-                    </Grid>
-
-
-                    <!--배경화면 종류설정-->
-                    <Grid Grid.Row="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition Height="30"/>
-                        </Grid.RowDefinitions>
-                        
-                        <TextBlock Grid.Row="0" Text="Background"
-                           Style="{StaticResource StyleTextBlockOptionCaption}"/>
-                        
-                        <ComboBox x:Name="cbxBackgroundSetting" Grid.Row="1"
-                                  Width="200" HorizontalAlignment="Left"
-                                  SelectedIndex="{Binding CurrentType, Converter={StaticResource BackgroundTypeToIndex}}"
-                                  FocusVisualStyle="{x:Null}">
-                            <ComboBox.Style>
-                                <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
-                                    <Setter Property="Background" Value="Transparent"/>
-                                </Style>
-                            </ComboBox.Style>
-                            
-                            <ComboBoxItem Content="Bing today image" 
-                                  DataContext="{StaticResource GridBingImageSelect}"
-                                  Selected="ComboBoxItem_Selected"/>
-                            
-                            <ComboBoxItem Content="Picture" 
-                                  DataContext="{StaticResource GridPictureSelect}"
-                                  Selected="ComboBoxItem_Selected"/>
-                            
-                            <ComboBoxItem Content="Solid color" 
-                                  DataContext="{StaticResource GridSolidColorSelect}"
-                                  Selected="ComboBoxItem_Selected"/>
-                            
-                            <ComboBoxItem Content="Slideshow" 
-                                  DataContext="{StaticResource GridSlideshowSelect}"
-                                  Selected="ComboBoxItem_Selected"/>
-                            
-                            <ComboBoxItem Content="Youtube" 
-                                  DataContext="{StaticResource GridYoutubeSelect}"
-                                  Selected="ComboBoxItem_Selected"/>
-                        </ComboBox>
-                    </Grid>
-
-                    <!--배경화면 Stretch설정-->
-                    <Grid Grid.Row="2">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition Height="30"/>
-                        </Grid.RowDefinitions>
-
-                        <TextBlock Grid.Row="0" Text="Choose a fit"
-                           Style="{StaticResource StyleTextBlockOptionCaption}"/>
-
-                        <ComboBox x:Name="cbxBackgroundFillMode" Grid.Row="1"
-                                  Width="200" HorizontalAlignment="Left"
-                                  SelectedIndex="{Binding CurrentStretchType, Converter={StaticResource StretchEnumToIndex}}"
-                                  FocusVisualStyle="{x:Null}">
-                            <ComboBox.Style>
-                                <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
-                                    <Setter Property="Background" Value="Transparent"/>
-                                </Style>
-                            </ComboBox.Style>
-
-                            <ComboBoxItem Content="Fill"/>
-
-                            <ComboBoxItem Content="None"/>
-
-                            <ComboBoxItem Content="Uniform"/>
-
-                            <ComboBoxItem Content="Uniform to fill"/>
-                        </ComboBox>
-                    </Grid>
-
-
-                    <!--상세설정-->
-                    <ContentPresenter x:Name="cpBackgroundSetting" Grid.Row="3"
-                              Content="{Binding ElementName=cbxBackgroundSetting, Path=SelectedItem.DataContext}"
-                              Margin="0,50,0,0">
-
-                    </ContentPresenter>
-                </Grid>
-            </ScrollViewer>
-            
-        </Grid>
+        <Frame Grid.Column="1" Margin="30,10,0,0" Source="Pages/Setting/SettingBackgroundPage.xaml">
+        </Frame>
     </Grid>
 </ctrls:MetroWindow>

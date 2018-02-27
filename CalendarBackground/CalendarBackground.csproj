@@ -151,6 +151,9 @@
     <Compile Include="Model\CBBackground.cs" />
     <Compile Include="Model\CBDay.cs" />
     <Compile Include="ViewModel\CBBackgroundViewModel.cs" />
+    <Compile Include="View\Pages\Setting\SettingBackgroundPage.xaml.cs">
+      <DependentUpon>SettingBackgroundPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SettingWindow.xaml.cs">
       <DependentUpon>SettingWindow.xaml</DependentUpon>
     </Compile>
@@ -231,6 +234,10 @@
       <SubType>Designer</SubType>
     </Resource>
     <Page Include="Theme\Icon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Setting\SettingBackgroundPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
