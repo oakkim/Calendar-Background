@@ -146,8 +146,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Converter\BackgroundTypeToIndex.cs" />
-    <Compile Include="Converter\StretchEnumToIndex.cs" />
+    <Compile Include="Converter\BackgroundTypeToIndexConverter.cs" />
+    <Compile Include="Converter\IsEqualToVisibilityConverter.cs" />
+    <Compile Include="Converter\StretchEnumToIndexConverter.cs" />
     <Compile Include="Helper\IconHelper.cs" />
     <Compile Include="Model\CBBackground.cs" />
     <Compile Include="Model\CBDay.cs" />

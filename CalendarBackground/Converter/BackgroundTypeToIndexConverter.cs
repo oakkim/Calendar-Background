@@ -9,7 +9,7 @@ using System.Windows.Data;
 
 namespace CalendarBackground.Converter
 {
-    public class BackgroundTypeToIndex : IValueConverter
+    public class BackgroundTypeToIndexConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
