@@ -33,6 +33,7 @@ namespace CalendarBackground.Model
             {
                 _title = value;
                 OnPropertyChanged(nameof(Title));
+                OnPropertyChanged(nameof(Page));
             }
         }
 
@@ -44,6 +45,11 @@ namespace CalendarBackground.Model
                 _icon = value;
                 OnPropertyChanged(nameof(Icon));
             }
+        }
+
+        public string Page
+        {
+            get => "/View/Pages/Setting/Setting" + Title + "Page.xaml";
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

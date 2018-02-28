@@ -156,6 +156,9 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\CBBackgroundViewModel.cs" />
     <Compile Include="ViewModel\CBSettingMenuViewModel.cs" />
+    <Compile Include="View\Pages\Setting\SettingCalendarPage.xaml.cs">
+      <DependentUpon>SettingCalendarPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\Setting\SettingBackgroundPage.xaml.cs">
       <DependentUpon>SettingBackgroundPage.xaml</DependentUpon>
     </Compile>
@@ -241,6 +244,10 @@
     <Page Include="Theme\Icon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Setting\SettingCalendarPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Pages\Setting\SettingBackgroundPage.xaml">
       <SubType>Designer</SubType>
