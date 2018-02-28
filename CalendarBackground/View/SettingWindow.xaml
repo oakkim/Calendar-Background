@@ -78,7 +78,7 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
                                         
-                                            <Rectangle x:Name="Rectangle" Visibility="Hidden" Fill="LightGray" Grid.Column="0" Margin="0,10"></Rectangle>
+                                            <Rectangle x:Name="Rectangle" Opacity="0" Fill="LightGray" Grid.Column="0" Margin="0,10"></Rectangle>
 
                                             <ContentPresenter Grid.Column="1"
                                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
@@ -89,9 +89,33 @@
                                     </Border>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsSelected" Value="True">
-                                            <Setter TargetName="Rectangle" Property="Visibility" Value="Visible"></Setter>
-                                            <Setter TargetName="Bd" Property="Background" Value="Black"></Setter>
-                                            <Setter TargetName="Bd" Property="Opacity" Value="0.5"></Setter>
+                                            <Trigger.EnterActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard TargetName="Bd" TargetProperty="Opacity">
+                                                        <DoubleAnimation Duration="0:0:0.15" From="1" To="0.5"></DoubleAnimation>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                                
+                                                <BeginStoryboard>
+                                                    <Storyboard TargetName="Rectangle" TargetProperty="Opacity">
+                                                        <DoubleAnimation Duration="0:0:0.15" From="0" To="1"></DoubleAnimation>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.EnterActions>
+
+                                            <Trigger.ExitActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard TargetName="Bd" TargetProperty="Opacity">
+                                                        <DoubleAnimation Duration="0:0:0.15" From="0.5" To="1"></DoubleAnimation>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+
+                                                <BeginStoryboard>
+                                                    <Storyboard TargetName="Rectangle" TargetProperty="Opacity">
+                                                        <DoubleAnimation Duration="0:0:0.15" From="1" To="0"></DoubleAnimation>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.ExitActions>
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <Setter Property="Background" Value="#1D1D1D"></Setter>
@@ -127,6 +151,16 @@
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                
+                <!--<ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Style.Triggers>
+                            <Trigger>
+
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.ItemContainerStyle>-->
             </ListView>
         </Grid>
 
