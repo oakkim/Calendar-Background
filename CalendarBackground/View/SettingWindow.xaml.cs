@@ -19,8 +19,8 @@ namespace CalendarBackground.View
     {
         public SettingWindow()
         {
-            InitializeComponent();
             DataContext = App.SettingMenuViewModel;
+            InitializeComponent();
         }
     }
 }
