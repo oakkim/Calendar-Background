@@ -80,10 +80,10 @@
 
                             <Grid Grid.Column="0" Background="Gray" />
 
-                            <!--<Viewbox Grid.Column="1" VerticalAlignment="Center" Margin="5,0">
+                            <Viewbox Grid.Column="1" VerticalAlignment="Center" Margin="10,0">
                                 <ContentControl Content="{Binding Icon}"></ContentControl>
-                            </Viewbox>-->
-                            <Grid Grid.Column="1" Background="AliceBlue" Margin="10,0" />
+                            </Viewbox>
+                            <!--<Grid Grid.Column="1" Background="AliceBlue" Margin="10,0" />-->
 
                             <TextBlock Grid.Column="2" 
                                        Text="{Binding Title}" FontSize="15"

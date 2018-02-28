@@ -4,7 +4,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using CalendarBackground.Annotations;
+using CalendarBackground.Helper;
 using CalendarBackground.Model;
 
 namespace CalendarBackground.ViewModel
@@ -22,8 +24,8 @@ namespace CalendarBackground.ViewModel
 
         private void InitializeItems()
         {
-            Items.Add(new CBSettingMenu(){Idx = 0, Title = "Background"});
-            Items.Add(new CBSettingMenu(){Idx = 1, Title = "Calendar"});
+            Items.Add(new CBSettingMenu(){Idx = 0, Title = "Background", Icon = IconHelper.FindIconCanvasByName("icon_picture") });
+            Items.Add(new CBSettingMenu(){Idx = 1, Title = "Calendar", Icon = IconHelper.FindIconCanvasByName("icon_calendar") });
         }
     }
 }

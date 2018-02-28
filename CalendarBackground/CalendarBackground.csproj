@@ -148,6 +148,7 @@
     </ApplicationDefinition>
     <Compile Include="Converter\BackgroundTypeToIndex.cs" />
     <Compile Include="Converter\StretchEnumToIndex.cs" />
+    <Compile Include="Helper\IconHelper.cs" />
     <Compile Include="Model\CBBackground.cs" />
     <Compile Include="Model\CBDay.cs" />
     <Compile Include="Model\CBSettingMenu.cs" />
