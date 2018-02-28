@@ -10,8 +10,8 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="SettingBackgroundPage">
     <Page.Resources>
-        <converters:BackgroundTypeToIndex x:Key="BackgroundTypeToIndex"/>
-        <converters:StretchEnumToIndex x:Key="StretchEnumToIndex"/>
+        <converters:BackgroundTypeToIndexConverter x:Key="BackgroundTypeToIndex"/>
+        <converters:StretchEnumToIndexConverter x:Key="StretchEnumToIndex"/>
 
         <Style TargetType="Label">
             <Setter Property="Foreground" Value="White"/>

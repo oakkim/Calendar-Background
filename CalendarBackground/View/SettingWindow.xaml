@@ -15,6 +15,8 @@
         mc:Ignorable="d"
         Title="" Height="720" Width="1280">
     <Window.Resources>
+        <converters:IsEqualToVisibilityConverter x:Key="IsEqualToVIsibilityConverter"/>
+
         <Style TargetType="Label">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Segoe UI"/>
@@ -62,30 +64,64 @@
                       BorderThickness="0" Background="Transparent"
                       FocusVisualStyle="{x:Null}">
                 <ListView.Resources>
-                    <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListViewItem">
+                                    <Border x:Name="Bd"
+                                            Background="{TemplateBinding Background}" 
+                                            Padding="{TemplateBinding Padding}" 
+                                            SnapsToDevicePixels="true">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="5"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                        
+                                            <Rectangle x:Name="Rectangle" Visibility="Hidden" Fill="LightGray" Grid.Column="0" Margin="0,10"></Rectangle>
+
+                                            <ContentPresenter Grid.Column="1"
+                                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                        
+                                        </Grid>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="Rectangle" Property="Visibility" Value="Visible"></Setter>
+                                            <Setter TargetName="Bd" Property="Background" Value="Black"></Setter>
+                                            <Setter TargetName="Bd" Property="Opacity" Value="0.5"></Setter>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#1D1D1D"></Setter>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+
                         <Setter Property="Padding" Value="0" />
                         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                         <Setter Property="Background" Value="Transparent"></Setter>
                     </Style>
+                    
                 </ListView.Resources>
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Height="25" Margin="0,10">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="6"/>
                                 <ColumnDefinition Width="45"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Grid Grid.Column="0" Background="Gray" />
-
-                            <Viewbox Grid.Column="1" VerticalAlignment="Center" Margin="10,0">
+                            <Viewbox Grid.Column="0" VerticalAlignment="Center" Margin="10,0">
                                 <ContentControl Content="{Binding Icon}"></ContentControl>
                             </Viewbox>
                             <!--<Grid Grid.Column="1" Background="AliceBlue" Margin="10,0" />-->
 
-                            <TextBlock Grid.Column="2" 
+                            <TextBlock Grid.Column="1" 
                                        Text="{Binding Title}" FontSize="15"
                                        VerticalAlignment="Center"/>
                         </Grid>
