@@ -143,7 +143,6 @@
                             <Viewbox Grid.Column="0" VerticalAlignment="Center" Margin="10,0">
                                 <ContentControl Content="{Binding Icon}"></ContentControl>
                             </Viewbox>
-                            <!--<Grid Grid.Column="1" Background="AliceBlue" Margin="10,0" />-->
 
                             <TextBlock Grid.Column="1" 
                                        Text="{Binding Title}" FontSize="15"
@@ -151,16 +150,6 @@
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-                
-                <!--<ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Style.Triggers>
-                            <Trigger>
-
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </ListView.ItemContainerStyle>-->
             </ListView>
         </Grid>
 
