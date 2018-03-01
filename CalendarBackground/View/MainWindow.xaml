@@ -76,8 +76,8 @@
         
         <Grid Margin="100">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.7*"></ColumnDefinition>
-                <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                <ColumnDefinition Width="0.75*"></ColumnDefinition>
+                <ColumnDefinition Width="0.25*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel VerticalAlignment="Bottom" Grid.Column="0">
                 <Label x:Name="lblYear" FontSize="30" Foreground="{x:Static local:Common.DefaultForeground}">2017</Label>
