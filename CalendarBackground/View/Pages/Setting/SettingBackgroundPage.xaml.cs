@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -31,8 +32,11 @@ namespace CalendarBackground.View.Pages.Setting
 
         private void btnPictureSelect_Click(object sender, RoutedEventArgs e)
         {
-            var filePath = OpenDialog()[0];
-            App.BackgroundViewModel.AddBackground(new CBPictureBackground(filePath));
+            var filePath = OpenDialog();
+            if (filePath != null)
+            {
+                App.BackgroundViewModel.AddBackground(new CBPictureBackground(filePath.FirstOrDefault()));
+            }
         }
 
         private string[] OpenDialog(bool multiSelect = false)
