@@ -41,7 +41,7 @@ namespace CalendarBackground.View
 
         private void SettingItem_Click(object sender, EventArgs e)
         {
-            SettingWindow win = new SettingWindow();
+            SettingWindow win = SettingWindow.GetInstance();
             win.Show();
         }
 

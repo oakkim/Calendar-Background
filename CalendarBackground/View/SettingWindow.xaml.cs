@@ -17,10 +17,21 @@ namespace CalendarBackground.View
     /// </summary>
     public partial class SettingWindow : MetroWindow
     {
-        public SettingWindow()
+        private static SettingWindow _instance;
+
+        private SettingWindow()
         {
-            DataContext = App.SettingMenuViewModel;
             InitializeComponent();
+            DataContext = App.SettingMenuViewModel;
+        }
+
+        public static SettingWindow GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new SettingWindow();
+            }
+            return _instance;
         }
     }
 }
