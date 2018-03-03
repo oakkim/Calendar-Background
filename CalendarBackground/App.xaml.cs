@@ -15,11 +15,12 @@ namespace CalendarBackground
     /// </summary>
     public partial class App : Application
     {
-        public static readonly CBBackgroundViewModel BackgroundViewModel = new CBBackgroundViewModel();
+        public static readonly CBBackgroundViewModel BackgroundViewModel = CBBackgroundViewModel.LoadInstance();
         public static readonly CBSettingMenuViewModel SettingMenuViewModel = new CBSettingMenuViewModel();
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            base.OnStartup(e);
 
             // Custom UI Load
             // add custom accent and theme resource dictionaries to the ThemeManager
@@ -34,8 +35,13 @@ namespace CalendarBackground
             ThemeManager.ChangeAppStyle(Application.Current,
                                         ThemeManager.GetAccent("CustomAccent"),
                                         theme.Item1);
+        }
 
-            base.OnStartup(e);
+        protected override void OnExit(ExitEventArgs e)
+        {
+            base.OnExit(e);
+
+            CBBackgroundViewModel.SaveInstance(BackgroundViewModel);
         }
     }
 }

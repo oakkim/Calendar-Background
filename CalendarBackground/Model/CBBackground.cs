@@ -22,6 +22,7 @@ namespace CalendarBackground.Model
         string Background { get; set; }
     }
 
+    [Serializable]
     public class CBBingImageBackground : ICBBackground
     {
         public BackgroundType BackgroundType
@@ -54,6 +55,7 @@ namespace CalendarBackground.Model
             }
         }
 
+        [field: NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propertyName)
         {
@@ -61,6 +63,7 @@ namespace CalendarBackground.Model
         }
     }
 
+    [Serializable]
     public class CBSolidColorBackground : ICBBackground
     {
         public BackgroundType BackgroundType
@@ -87,6 +90,7 @@ namespace CalendarBackground.Model
             Background = background;
         }
 
+        [field: NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propertyName)
         {
@@ -94,6 +98,7 @@ namespace CalendarBackground.Model
         }
     }
 
+    [Serializable]
     public class CBPictureBackground : ICBBackground
     {
         public BackgroundType BackgroundType
@@ -120,6 +125,7 @@ namespace CalendarBackground.Model
             Background = background;
         }
 
+        [field: NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propertyName)
         {
@@ -127,6 +133,7 @@ namespace CalendarBackground.Model
         }
     }
 
+    [Serializable]
     public class CBYoutubeBackground : ICBBackground
     {
         public BackgroundType BackgroundType
@@ -153,6 +160,7 @@ namespace CalendarBackground.Model
             Background = background;
         }
 
+        [field: NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propertyName)
         {

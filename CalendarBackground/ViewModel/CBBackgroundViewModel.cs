@@ -4,22 +4,24 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using Newtonsoft.Json;
 
 namespace CalendarBackground.ViewModel
 {
+    [Serializable]
     public class CBBackgroundViewModel : INotifyPropertyChanged
     {
         private BackgroundType _currentType;
         public BackgroundType CurrentType
         {
-            get
-            {
-                return _currentType;
-            }
+            get => _currentType;
             set
             {
                 _currentType = value;
@@ -30,10 +32,7 @@ namespace CalendarBackground.ViewModel
         private Stretch _currentStretchType;
         public Stretch CurrentStretchType
         {
-            get
-            {
-                return _currentStretchType;
-            }
+            get => _currentStretchType;
             set
             {
                 _currentStretchType = value;
@@ -43,13 +42,61 @@ namespace CalendarBackground.ViewModel
 
         public ObservableCollection<ICBBackground> Items { get; set; } = new ObservableCollection<ICBBackground>();
 
-        //async public static Task<CBBackgroundViewModel> GetInstance()
+        //public static async Task<CBBackgroundViewModel> GetInstance()
         //{
         //    var vm = new CBBackgroundViewModel();
         //    await vm.InitItemsAsync();
         //    vm.CurrentStretchType = Stretch.Fill;
         //    return vm;
         //}
+
+        public static void SaveInstance(CBBackgroundViewModel vm)
+        {
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Common.SAVE_FILE);
+
+            var bf = new BinaryFormatter();
+            try
+            {
+                using (var fs = new FileStream(Common.SAVE_FILE, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None))
+                {
+                    bf.Serialize(fs, vm);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        public static CBBackgroundViewModel LoadInstance()
+        {
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Common.SAVE_FILE);
+
+            if (File.Exists(path))
+            {
+                var bf = new BinaryFormatter();
+                try
+                {
+                    using (var fs = new FileStream(Common.SAVE_FILE, FileMode.Open, FileAccess.Read, FileShare.None))
+                    {
+                        fs.Position = 0;
+                        var des = bf.Deserialize(fs);
+                        return (CBBackgroundViewModel) des;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    if (e is SerializationException)
+                    {
+                        File.Delete(path);
+                    }
+                    throw;
+                }
+            }
+            return new CBBackgroundViewModel();
+        }
 
         public CBBackgroundViewModel()
         {
@@ -132,6 +179,7 @@ namespace CalendarBackground.ViewModel
             return null;
         }
 
+        [field: NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propertyName)
         {
