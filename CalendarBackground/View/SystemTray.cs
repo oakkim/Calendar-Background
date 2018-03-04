@@ -47,8 +47,8 @@ namespace CalendarBackground.View
 
         private void ExitItem_Click(object sender, EventArgs e)
         {
-            //App.Current.Shutdown();
-            Close();
+            App.Current.Shutdown();
+            //Close();
         }
 
         private void Notify_Click(object sender, EventArgs e)
