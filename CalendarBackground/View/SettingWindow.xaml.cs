@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
@@ -32,6 +33,12 @@ namespace CalendarBackground.View
                 _instance = new SettingWindow();
             }
             return _instance;
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            _instance = null;
         }
     }
 }
