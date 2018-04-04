@@ -156,7 +156,8 @@
         <!--Middle content-->
         <Frame Grid.Column="1" Margin="30,10,0,0" 
                Source="{Binding Path=SelectedMenu.Page}"
-               NavigationUIVisibility="Hidden">
+               NavigationUIVisibility="Hidden"
+               FocusVisualStyle="{x:Null}">
             <Frame.Style>
                 <!--Remove NavigationBar-->
                 <Style TargetType="{x:Type Frame}">
