@@ -140,7 +140,7 @@ namespace CalendarBackground.Model
         {
             get
             {
-                return BackgroundType.PICTURE;
+                return BackgroundType.YOUTUBE;
             }
         }
 
