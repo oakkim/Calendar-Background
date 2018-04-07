@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
@@ -144,7 +145,7 @@ namespace CalendarBackground.View
             SetCalendar();
             //SetMealList();
             SetSystemTray();
-            //FillYoutube("a");
+            //FillYoutube("https://www.youtube.com/watch?v=Sk-U8ruIQyA");
         }
 
         private IntPtr GetWindowHandle()
@@ -172,13 +173,10 @@ namespace CalendarBackground.View
 
         private void FillYoutube(string url)
         {
-            var s = new CefSettings();
-            s.SetOffScreenRenderingBestPerformanceArgs();
-            Cef.Initialize(s);
-            var wbMain = new ChromiumWebBrowser(); 
-            //wbMain.Address = "https://www.youtube.com/embed/videoseries?list=PLjkUDT6hWqyrotJAOd5JAdF_63LFku36i;autoplay=1";
-            wbMain.Address = "https://www.youtube.com/embed/DnDFThL1qlI?autoplay=1;loop=1";
-            grMain.Children.Add(wbMain);
+            const string reg = @"https\:\/\/www\.youtube\.com\/watch\?v=([\w-]{11})";
+            var result = Regex.Match(url, reg);
+            var code = result.Groups[1].Value;
+            cefBrowser.Address = $"https://www.youtube.com/embed/{code}?autoplay=1;loop=1";
         }
 
         private void ShowOnWorkerW()
