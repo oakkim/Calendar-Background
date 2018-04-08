@@ -151,6 +151,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Control\BackgroundControl.xaml.cs">
+      <DependentUpon>BackgroundControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converter\BackgroundTypeToIndexConverter.cs" />
     <Compile Include="Converter\IsEqualToVisibilityConverter.cs" />
     <Compile Include="Converter\StretchEnumToIndexConverter.cs" />
@@ -238,6 +241,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Control\BackgroundControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Theme\Color.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
