@@ -127,6 +127,7 @@
 
                 <TextBox x:Name="tbYoutubeUrl"
                          Grid.Row="1" Width="200"
+                         VerticalContentAlignment="Center"
                          HorizontalAlignment="Left"></TextBox>
 
                 <Button x:Name="btnYoutubeOK"
